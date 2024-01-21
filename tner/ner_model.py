@@ -53,18 +53,6 @@ class TransformersNER:
         except Exception:
             self.model = load_hf(self.model_name, label2id, use_auth_token, True)
         self.is_xlnet = self.model.config.model_type == 'xlnet'
-        # load crf layer
-        if 'crf_state_dict' in self.model.config.to_dict().keys() or crf:
-            logging.info('use CRF')
-            self.crf_layer = ConditionalRandomField(
-                num_tags=len(self.model.config.id2label),
-                constraints=allowed_transitions(constraint_type="BIO", labels=self.model.config.id2label)
-            )
-            if 'crf_state_dict' in self.model.config.to_dict().keys():
-                logging.info('loading pre-trained CRF layer')
-                self.crf_layer.load_state_dict(
-                    {k: torch.FloatTensor(v) for k, v in self.model.config.crf_state_dict.items()}
-                )
         self.label2id = self.model.config.label2id
         self.id2label = self.model.config.id2label
         logging.info(f'label2id: {self.label2id}')
