@@ -42,7 +42,6 @@ setup(
     test_suite='tests',
     install_requires=[
         'torch',
-        'allennlp-light',
         'transformers',
         'sentencepiece',
         'seqeval',

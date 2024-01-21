@@ -8,10 +8,6 @@ from packaging.version import parse
 
 import torch
 
-# For CRF Layer
-from allennlp_light.modules import ConditionalRandomField
-from allennlp_light.modules.conditional_random_field.conditional_random_field import allowed_transitions
-
 from .get_dataset import get_dataset
 from .util import pickle_save, pickle_load, span_f1, decode_ner_tags, Dataset, load_hf
 from .ner_tokenizer import NERTokenizer
