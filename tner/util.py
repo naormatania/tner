@@ -9,7 +9,7 @@ from itertools import chain
 
 import numpy as np
 import torch
-from transformers import AutoConfig, AutoModelForTokenClassification
+from transformers import AutoConfig, ORTModelForTokenClassification
 
 # For evaluation (span-F1 score)
 from seqeval.metrics import f1_score, precision_score, recall_score, classification_report
@@ -283,7 +283,7 @@ def load_hf(model: str,
          but need for fine-tuning model on NER
     @param use_auth_token: [optional] Huggingface transformers argument of `use_auth_token`
     @param local_files_only: [optional] Huggingface transformers argument of `local_files_only`
-    @return: AutoModelForTokenClassification object
+    @return: ORTModelForTokenClassification object
     """
     if label2id is not None:
         config = AutoConfig.from_pretrained(
@@ -295,6 +295,6 @@ def load_hf(model: str,
             local_files_only=local_files_only)
     else:
         config = AutoConfig.from_pretrained(model, use_auth_token=use_auth_token, local_files_only=local_files_only)
-    return AutoModelForTokenClassification.from_pretrained(
+    return ORTModelForTokenClassification.from_pretrained(
         model, config=config, use_auth_token=use_auth_token, local_files_only=local_files_only)
 
