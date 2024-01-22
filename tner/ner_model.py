@@ -236,7 +236,8 @@ class TransformersNER:
                 assert len(label) == len(pred) == len(prob), str([len(label), len(pred), len(prob)])
                 input_ids = i.pop('input_ids').cpu().tolist()
                 for _i, _p, _prob, _l in zip(input_ids, pred, prob, label):
-                    assert len(_i) == len(_p) == len(_l)
+                    # If BetterTransformer is used then for preb,prob the size of the attention mask is returned and not the entire sequence size
+                    # assert len(_i) == len(_p) == len(_l)
                     tmp = [(__p, __l, __prob) for __p, __l, __prob in zip(_p, _l, _prob) if __l != PAD_TOKEN_LABEL_ID]
                     tmp_pred = list(list(zip(*tmp))[0])
                     tmp_label = list(list(zip(*tmp))[1])
