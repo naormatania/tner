@@ -45,7 +45,7 @@ setup(
         'transformers',
         'sentencepiece',
         'seqeval',
-        'datasets'
+        'datasets',
         'optimum',
     ],
     python_requires='>=3.6',
