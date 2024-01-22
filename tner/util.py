@@ -9,7 +9,8 @@ from itertools import chain
 
 import numpy as np
 import torch
-from transformers import AutoConfig, ORTModelForTokenClassification
+from transformers import AutoConfig
+from optimum.onnxruntime import ORTModelForTokenClassification
 
 # For evaluation (span-F1 score)
 from seqeval.metrics import f1_score, precision_score, recall_score, classification_report
