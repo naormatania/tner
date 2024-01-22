@@ -46,7 +46,7 @@ setup(
         'sentencepiece',
         'seqeval',
         'datasets',
-        'optimum',
+        'optimum[onnxruntime]',
     ],
     python_requires='>=3.6',
     entry_points={
