@@ -23,7 +23,7 @@ class TransformersNER:
         self.model.train()
 
     def eval(self):
-        self.model.eval()
+        #self.model.eval()
 
     def __init__(self,
                  model: str,
@@ -214,7 +214,7 @@ class TransformersNER:
             label_list = [[self.id2label[__l] for __l in _l] for _l in labels]
             inputs_list = inputs
         else:
-            self.model.eval()
+            # self.model.eval()
             loader = self.get_data_loader(
                 inputs,
                 labels=labels,
