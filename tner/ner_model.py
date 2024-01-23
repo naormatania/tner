@@ -233,6 +233,7 @@ class TransformersNER:
             inputs_list = []
             for i in tqdm(loader):
                 label = i.pop('labels').cpu().tolist()
+                i['attention_mask'] = i['attention_mask'].type(torch.int64)
                 pred, prob = self.encode_to_prediction(i)
                 assert len(label) == len(pred) == len(prob), str([len(label), len(pred), len(prob)])
                 input_ids = i.pop('input_ids').cpu().tolist()
