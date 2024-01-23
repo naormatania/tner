@@ -23,6 +23,7 @@ class TransformersNER:
         self.model.train()
 
     def eval(self):
+        pass
         #self.model.eval()
 
     def __init__(self,
