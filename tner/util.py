@@ -276,7 +276,8 @@ class Dataset(torch.utils.data.Dataset):
 def load_hf(model: str,
             label2id: Dict = None,
             use_auth_token: bool = False,
-            local_files_only: bool = False):
+            local_files_only: bool = False,
+            options=None):
     """ load model instance from huggingface
 
     @param model: the huggingface model (`tner/roberta-large-tweetner-2021`) or path to local checkpoint
@@ -297,5 +298,5 @@ def load_hf(model: str,
     else:
         config = AutoConfig.from_pretrained(model, use_auth_token=use_auth_token, local_files_only=local_files_only)
     return ORTModelForTokenClassification.from_pretrained(
-        model, config=config, use_auth_token=use_auth_token, local_files_only=local_files_only)
+        model, config=config, use_auth_token=use_auth_token, local_files_only=local_files_only, session_options=options)
 

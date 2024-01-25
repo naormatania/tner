@@ -32,7 +32,8 @@ class TransformersNER:
                  crf: bool = False,
                  use_auth_token: bool = False,
                  label2id: Dict = None,
-                 non_entity_symbol: str = 'O'):
+                 non_entity_symbol: str = 'O',
+                 session_options = None):
         """ TransformersNER
 
         @param model: the huggingface model (`tner/roberta-large-tweetner-2021`) or path to local checkpoint
@@ -50,9 +51,9 @@ class TransformersNER:
         # load model
         logging.info(f'initialize language model with `{model}`')
         try:
-            self.model = load_hf(self.model_name, label2id, use_auth_token)
+            self.model = load_hf(self.model_name, label2id, use_auth_token, options=session_options)
         except Exception:
-            self.model = load_hf(self.model_name, label2id, use_auth_token, True)
+            self.model = load_hf(self.model_name, label2id, use_auth_token, True, options=session_options)
         self.is_xlnet = self.model.config.model_type == 'xlnet'
         self.label2id = self.model.config.label2id
         self.id2label = self.model.config.id2label
